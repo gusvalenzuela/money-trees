@@ -1,5 +1,11 @@
+const API = require(`./API`)
+
 let transactions = [];
 let myChart;
+
+API.loadSavedTransactions().then(data => {
+  console.log(data)
+})
 
 fetch("/api/transaction")
   .then(response => {
@@ -146,6 +152,7 @@ function sendTransaction(isAdding) {
 
 document.querySelector("#add-btn").onclick = function() {
   sendTransaction(true);
+  console.log(`clickety`)
 };
 
 document.querySelector("#sub-btn").onclick = function() {
