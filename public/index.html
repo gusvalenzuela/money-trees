@@ -15,18 +15,77 @@
       rel="stylesheet"
       href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
     />
-    <link rel="stylesheet" href="css/styles.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/foundation-sites@6.6.3/dist/css/foundation.min.css"
+      integrity="sha256-ogmFxjqiTMnZhxCqVmcqTvjfe1Y/ec4WaRj/aQPvn+I="
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="./css/index.css" />
 
     <title>Budget Tracker</title>
   </head>
   <body>
     <div class="wrapper">
-      <div class="total">
-        <div class="total">Your total is: $<span id="total">0</span></div>
+      <!-- top total dashbard  -->
+      <div class="dashboard-number-card positive">
+        <h5 class="dashboard-number-value">
+          Your total: <br />$<span id="total">0</span>
+        </h5>
+        <div>
+          <p class="dashboard-number-area">Last transaction:</p>
+          <p class="dashboard-number-delta">
+            <i class="fa fa-arrow-up" aria-hidden="true"></i>
+            <i class="fa fa-arrow-down" aria-hidden="true"></i>
+          </p>
+        </div>
+      </div>
+
+      <!-- input form  -->
+
+      <div class="hero-background">
+        <div class="row">
+          <div class="columns small-12 medium-4">
+            <div class="translucent-form-overlay">
+              <form>
+                <h3>Enter your transaction:</h3><br>
+                <div class="row columns">
+                  <label
+                    >Name of transaction
+                    <input type="text" id="t-name" name="name" placeholder="Any" />
+                  </label>
+                </div>
+                <div class="row columns">
+                  <label
+                    >Transaction amount
+                    <input type="number" min="0" name="amount" id="t-amount" placeholder="Any" />
+                  </label>
+                </div>
+                <div class="row">
+                  <button
+                    type="button"
+                    class="deposit button columns small-6"
+                    id="add-btn"
+                  >
+                  <i class="fa fa-plus"></i>Deposit
+                  </button>
+                  <button
+                    type="button"
+                    class="withdraw button columns small-6"
+                    id="sub-btn"
+                  >
+                  <i class="fa fa-minus"></i>Withdraw
+                  </button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
       </div>
 
       <div class="form">
-        <input type="text" id="t-name" placeholder="Name of transaction" />
+        <input type="text"  placeholder="Name of transaction" />
         <input
           type="number"
           min="0"
@@ -34,9 +93,9 @@
           placeholder="Transaction amount"
         />
         <button id="add-btn">
-          <i class="fa fa-plus buttons"></i> Add Funds
+           Add Funds
         </button>
-        <button id="sub-btn"><i class="fa fa-minus"></i> Subtract Funds</button>
+        <button > Subtract Funds</button>
         <p class="error"></p>
       </div>
 
@@ -53,7 +112,21 @@
       <canvas id="myChart"></canvas>
     </div>
 
+    <script
+      src="https://cdn.jsdelivr.net/npm/foundation-sites@6.6.3/dist/js/foundation.min.js"
+      integrity="sha256-pRF3zifJRA9jXGv++b06qwtSqX1byFQOLjqa2PTEb2o="
+      crossorigin="anonymous"
+    ></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
-    <script src="index.bun.js"></script>
+    <script src="dist/index.bun.js"></script>
+    <script>
+      if ("serviceWorker" in navigator) {
+        window.addEventListener("load", () => {
+          navigator.serviceWorker.register("service-worker.js").then((reg) => {
+            console.log("We found your service worker file!", reg);
+          });
+        });
+      }
+    </script>
   </body>
 </html>

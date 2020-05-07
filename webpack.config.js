@@ -5,13 +5,13 @@ const config = {
   mode: "development",
   entry: [
      __dirname + "/src/_js/index.js",
-   __dirname + "/src/_css/styles.css",
+  //  __dirname + "/src/_css/index.css",
     // user: "./public/user.js",
   ],
   output: {
-    path: __dirname + "/public/",
+    path: __dirname + "/public/dist",
     publicPath: "/",
-    filename: "index.bun.js",
+    filename: "bundle.js",
   },
   plugins: [
     new WebpackPwaManifest({
@@ -50,7 +50,7 @@ const config = {
         test: /\.css$/,
         exclude: /(node_modules)/,
         use: [
-          "style-loader",
+          // "style-loader",
           { loader: "css-loader", options: { importLoaders: 1 } },
           "postcss-loader",
         ],
