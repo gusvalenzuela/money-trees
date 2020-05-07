@@ -48,8 +48,8 @@ tr:nth-child(even) {
   max-height: 300px;
   overflow: auto;
   width: 90%;
-  margin: auto;
-  margin-bottom: 3rem;
+  margin: 2rem auto;
+  /* margin-bottom: 3rem; */
 }
 .open-details td {
   font-size: medium;
