@@ -1,6 +1,7 @@
 body {
   font-size: 120%;
   font-family: Arial;
+  background: #fafdff;
 }
 
 button,
@@ -11,11 +12,12 @@ input {
 
 table {
   width: 100%;
+  border: solid 1px #125988;
 }
 
 td,
 th {
-  border: 1px solid #dddddd;
+  /* border: 1px solid transparent; */
   text-align: left;
   padding: 8px;
 }
@@ -45,10 +47,10 @@ tr:nth-child(even) {
 
 .transactions {
   text-align: left;
-  max-height: 300px;
+  max-height: 200px;
   overflow: auto;
   width: 90%;
-  margin: 2rem auto;
+  margin: .5rem auto 2rem;
   /* margin-bottom: 3rem; */
 }
 .open-details td {

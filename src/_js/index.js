@@ -1,4 +1,4 @@
-const API = require(`./_js/API`);
+const API = require(`./API`);
 import moment from "moment";
 
 let transactions = [];
@@ -28,6 +28,7 @@ function populateTotal() {
     return total + parseInt(t.value);
   }, 0);
 
+  let dashboardRow = document.querySelector(`.dashboard.row`);
   let totalDashboard = document.querySelector(`.dashboard-number-card`);
   let totalEl = document.querySelector("#total");
 
@@ -47,9 +48,13 @@ function populateTotal() {
   if (total < 0) {
     totalDashboard.classList.remove(`positive`);
     totalDashboard.classList.add(`negative`);
+    dashboardRow.classList.remove(`positive`);
+    dashboardRow.classList.add(`negative`);
   } else {
     totalDashboard.classList.remove(`negative`);
     totalDashboard.classList.add(`positive`);
+    dashboardRow.classList.remove(`negative`);
+    dashboardRow.classList.add(`positive`);
   }
 
   totalEl.textContent = total;
@@ -59,7 +64,15 @@ function populateTable() {
   let tbody = document.querySelector("#tbody");
   tbody.innerHTML = "";
 
-  transactions.forEach((transaction) => {
+  if (transactions.length > 10) {
+    var amtToDisplay = 10;
+  } else {
+    var amtToDisplay = transactions.length;
+  }
+
+  for (let index = 0; index < amtToDisplay; index++) {
+    const element = transactions[index];
+
     // create and populate a table row
     let tr = document.createElement("tr");
     let trContent = document.createElement("tr");
@@ -67,26 +80,36 @@ function populateTable() {
     tr.classList.add(`open-details`);
     trContent.classList.add(`table-expand-row-content`);
 
-    tr.innerHTML = `<td>${transaction.name}</td>
-      <td>${transaction.value}</td>
-      <td>${moment(transaction.date).format(`MM/DD h:m a`)} <span class="expand-icon"></span></td>
+    tr.innerHTML = `<td>${element.name.toUpperCase()}</td>
+      <td class="t-amount">${element.value}</td>
+      <td>${moment(element.date).format(
+        `MM/DD h:mm a`
+      )} <span class="expand-icon"></span></td>
     `;
     trContent.innerHTML = `<td colspan="9" class="table-expand-row-nested">
-      <p>Date: ${moment(transaction.date).format(`llll`)}, Category: ${
-      transaction.category
-    }, 
-      </p>
+      <p><b>Date:</b> ${moment(element.date).format(`llll`)}, <b>Category:</b> ${
+      element.category
+    }
+    </p>
       </td>
     `;
 
     tbody.appendChild(tr);
     tbody.appendChild(trContent);
-  });
+  }
 
   $(".open-details").click(function (e) {
     e.preventDefault();
     $(this).next().toggleClass("is-active");
     $(this).toggleClass("is-active");
+  });
+
+  $(".t-amount").each((key, val) => {
+    let amount = Number($(val)[0].textContent);
+
+    if (amount < 0) {
+      $(val).attr(`style`, `color: #dd0000`);
+    }
   });
 }
 

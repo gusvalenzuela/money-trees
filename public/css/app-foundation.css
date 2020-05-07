@@ -1,9 +1,19 @@
+:root{
+	--color-positive: #2ba156;
+	--color-negative: #cc4b37;
+}
 .hero-background {
-  height: 400px;
+  height: fit-content;
   background-image: url(../images/vacation-beach-anders-wideskott-unsplash-t.jpg);
   background-size: cover;
   color: #fefefe;
   padding: 40px 0;
+}
+.positive{
+    background: var(--color-positive) ;
+}
+.negative{
+    background: var(--color-negative) ;
 }
 
 .dashboard-number-card {
@@ -53,11 +63,11 @@
 }
 
 .dashboard-number-card.positive {
-  background: #2ba156;
+  background: var(--color-positive);
 }
 
 .dashboard-number-card.negative {
-  background: #cc4b37;
+  background: var(--color-negative) ;
 }
 
 .dashboard-number-value {
@@ -102,6 +112,7 @@
 .translucent-form-overlay input,
 .translucent-form-overlay select {
   color: #8a8a8a;
+  text-align: center;
 }
 
 .translucent-form-overlay input::-webkit-input-placeholder {

@@ -23,7 +23,7 @@
   </head>
   <body>
     <div class="wrapper">
-      <div class="row">
+      <div class="dashboard row">
         <!-- top total dashbard  -->
         <div class="dashboard-number-card positive">
           <h5 class="dashboard-number-value">
@@ -45,30 +45,25 @@
         <div class="row">
           <div class="columns small-12 medium-4">
             <div class="translucent-form-overlay form">
-              <h3>Enter new</h3>
+              <h3>ENTER NEW TRANSACTION</h3>
               <br />
               <div class="row columns">
-                <label
-                  >Name of Transaction
-                  <input
-                    type="text"
-                    id="t-name"
-                    name="name"
-                    placeholder="Any"
-                  />
-                </label>
+                <label style="margin-bottom: 0.5rem;" for="#t-name"
+                  >Name:</label
+                >
+                <input type="text" id="t-name" name="name" placeholder="Any" />
               </div>
               <div class="row columns">
-                <label
-                  >Transaction Amount
-                  <input
-                    type="number"
-                    min="0"
-                    name="amount"
-                    id="t-amount"
-                    placeholder="Any"
-                  />
-                </label>
+                <label style="margin-bottom: 0.5rem;" for="#t-amount"
+                  >Amount:</label
+                >
+                <input
+                  type="number"
+                  min="0"
+                  name="amount"
+                  id="t-amount"
+                  placeholder="Any"
+                />
               </div>
               <div class="row">
                 <button
@@ -92,9 +87,11 @@
           </div>
         </div>
       </div>
+      <div class="row" style="margin-top: 2rem;">
+        <p style="text-align: center;">Latest Transactions (showing up to 10)</p>
+      </div>
 
       <div class="transactions">
-        <p style="text-align: center;">Past Transactions</p>
         <table class="table-expand">
           <tbody id="tbody"></tbody>
         </table>
