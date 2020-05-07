@@ -15,10 +15,13 @@ app.use(express.json());
 
 app.use(express.static("public"));
 
-mongoose.connect("mongodb://localhost/moneytreesdb", {
+const MONGODB_URI = process.env.MONGODB_URL ||"mongodb://localhost/moneytreesdb"
+const options = {
   useNewUrlParser: true,
+  useCreateIndex: true,
   useFindAndModify: false
-});
+}
+mongoose.connect(MONGODB_URI, options);
 
 // routes
 app.use(require("./routes/api.js"));

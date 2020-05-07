@@ -3,8 +3,7 @@ const WebpackPwaManifest = require("webpack-pwa-manifest");
 
 const config = {
   mode: "development",
-  entry: [
-     __dirname + "/src/_js/index.js",
+  entry: ["/src/index.js",
   //  __dirname + "/src/_css/index.css",
     // user: "./public/user.js",
   ],
