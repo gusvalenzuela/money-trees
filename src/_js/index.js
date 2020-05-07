@@ -1,4 +1,4 @@
-const API = require(`./API`);
+const API = require(`./_js/API`);
 import moment from "moment";
 
 let transactions = [];
