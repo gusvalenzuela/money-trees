@@ -89,11 +89,17 @@
 
 .translucent-form-overlay {
   margin: auto;
-  max-width: 80%;
-  width: 100%;
+  max-width: 325px;
   background-color: #363636b7;
   padding: 20px;
   color: #fefefe;
+  margin-right: 1rem;
+}
+
+@media screen and (max-width: 400px){
+    .translucent-form-overlay{
+        max-width: 90%;
+    }
 }
 
 .translucent-form-overlay .columns.row {
@@ -102,6 +108,7 @@
 
 .translucent-form-overlay label {
   font-size: 14px;
+  text-align: left;
 }
 
 .translucent-form-overlay h3,
@@ -112,7 +119,7 @@
 .translucent-form-overlay input,
 .translucent-form-overlay select {
   color: #8a8a8a;
-  text-align: center;
+  text-align: left;
 }
 
 .translucent-form-overlay input::-webkit-input-placeholder {
