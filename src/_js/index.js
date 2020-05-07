@@ -87,10 +87,10 @@ function populateTable() {
       )} <span class="expand-icon"></span></td>
     `;
     trContent.innerHTML = `<td colspan="9" class="table-expand-row-nested">
-      <p><b>Date:</b> ${moment(element.date).format(`llll`)}, <b>Category:</b> ${
+      <span><i class="strong">Date:</i> ${moment(element.date).format(`llll`)}, <i class="strong">Category:</i> ${
       element.category
     }
-    </p>
+    </span>
       </td>
     `;
 

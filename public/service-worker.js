@@ -1,10 +1,13 @@
 const FILES_TO_CACHE = [
+  "/index.html",
+  "/favicon.ico",
+  "/css/global/reset.css",
   "/css/index.css",
   "/css/app-foundation.css",
   "/css/styles.css",
-  "/index.html",
   "/dist/manifest.webmanifest",
-  "/dist/index.bun.js",
+  "/dist/bundle.js",
+  "/images/vacation-beach-anders-wideskott-unsplash-t.jpg",
 ];
 
 const STATIC_CACHE = "mt-static-cache-v1";
@@ -73,8 +76,7 @@ self.addEventListener("fetch", (event) => {
   event.respondWith(
     caches.match(event.request).then((cachedResponse) => {
       if (cachedResponse) {
-        //   return 
-        //   cachedResponse;
+        return cachedResponse;
       }
 
       // request is not in cache. make network request and cache the response

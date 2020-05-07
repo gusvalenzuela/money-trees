@@ -157,7 +157,7 @@
 }
 
 .table-expand-row-content.is-active {
-  display: table-row;
+  display: contents;
   -webkit-animation: fadeIn ease-in 1;
   animation: fadeIn ease-in 1;
   -webkit-animation-fill-mode: both;
@@ -165,11 +165,12 @@
   -webkit-animation-duration: 0.5s;
   animation-duration: 0.5s;
 
-  font-size: 12px;
+  font-size: 16px;
 }
 
 .table-expand-row-nested {
   background-color: #e6e6e6;
+  border: 1px solid transparent;
 }
 
 @-webkit-keyframes fadeIn {
