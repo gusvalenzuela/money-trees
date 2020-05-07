@@ -3,7 +3,8 @@ body {
   font-family: Arial;
 }
 
-button, input {
+button,
+input {
   font-size: 100%;
   font-family: Arial;
 }
@@ -12,7 +13,8 @@ table {
   width: 100%;
 }
 
-td, th {
+td,
+th {
   border: 1px solid #dddddd;
   text-align: left;
   padding: 8px;
@@ -20,6 +22,10 @@ td, th {
 
 tr:nth-child(even) {
   background-color: #dddddd;
+}
+
+.withdraw {
+  background: #125988;
 }
 
 .error {
@@ -42,5 +48,9 @@ tr:nth-child(even) {
   max-height: 300px;
   overflow: auto;
   width: 90%;
-  margin: 0 auto;
+  margin: auto;
+  margin-bottom: 3rem;
+}
+.open-details td {
+  font-size: medium;
 }

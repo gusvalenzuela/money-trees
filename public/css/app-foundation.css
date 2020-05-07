@@ -8,7 +8,6 @@
 
 .dashboard-number-card {
   background: #fff;
-  border-radius: 5px;
   margin: auto;
   position: relative;
   max-width: 350px;
@@ -54,7 +53,7 @@
 }
 
 .dashboard-number-card.positive {
-  background: #3adb76;
+  background: #2ba156;
 }
 
 .dashboard-number-card.negative {
@@ -82,13 +81,17 @@
   margin: auto;
   max-width: 80%;
   width: 100%;
-  background-color: #36363680;
+  background-color: #363636b7;
   padding: 20px;
   color: #fefefe;
 }
 
 .translucent-form-overlay .columns.row {
   display: block;
+}
+
+.translucent-form-overlay label {
+  font-size: 14px;
 }
 
 .translucent-form-overlay h3,
@@ -111,4 +114,67 @@
 
 .translucent-form-overlay input::placeholder {
   color: #8a8a8a;
+}
+
+.table-expand {
+  margin-top: 2rem;
+}
+
+.table-expand td {
+  color: #8a8a8a;
+}
+
+.table-expand tr {
+  border: 1px solid #e6e6e6;
+}
+
+.table-expand .text-right {
+  padding-right: 3rem;
+}
+
+.table-expand-row.is-active .expand-icon::after {
+  content: "-";
+}
+
+.table-expand-row .expand-icon::after {
+  content: "+";
+  float: right;
+}
+
+.table-expand-row-content {
+  display: none;
+}
+
+.table-expand-row-content.is-active {
+  display: table-row;
+  -webkit-animation: fadeIn ease-in 1;
+  animation: fadeIn ease-in 1;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+  -webkit-animation-duration: 0.5s;
+  animation-duration: 0.5s;
+
+  font-size: 12px;
+}
+
+.table-expand-row-nested {
+  background-color: #e6e6e6;
+}
+
+@-webkit-keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }

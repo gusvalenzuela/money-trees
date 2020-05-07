@@ -1,4 +1,5 @@
 const API = require(`./API`);
+import moment from "moment";
 
 let transactions = [];
 let myChart;
@@ -42,7 +43,6 @@ function populateTotal() {
       transactions[0].value
     } (+${delta.toFixed(2)}%)`;
   }
-  console.log(transactions);
 
   if (total < 0) {
     totalDashboard.classList.remove(`positive`);
@@ -62,12 +62,31 @@ function populateTable() {
   transactions.forEach((transaction) => {
     // create and populate a table row
     let tr = document.createElement("tr");
-    tr.innerHTML = `
-      <td>${transaction.name}</td>
+    let trContent = document.createElement("tr");
+    tr.classList.add(`table-expand-row`);
+    tr.classList.add(`open-details`);
+    trContent.classList.add(`table-expand-row-content`);
+
+    tr.innerHTML = `<td>${transaction.name}</td>
       <td>${transaction.value}</td>
+      <td>${moment(transaction.date).format(`MM/DD h:m a`)} <span class="expand-icon"></span></td>
+    `;
+    trContent.innerHTML = `<td colspan="9" class="table-expand-row-nested">
+      <p>Date: ${moment(transaction.date).format(`llll`)}, Category: ${
+      transaction.category
+    }, 
+      </p>
+      </td>
     `;
 
     tbody.appendChild(tr);
+    tbody.appendChild(trContent);
+  });
+
+  $(".open-details").click(function (e) {
+    e.preventDefault();
+    $(this).next().toggleClass("is-active");
+    $(this).toggleClass("is-active");
   });
 }
 
