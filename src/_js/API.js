@@ -10,24 +10,7 @@ module.exports = {
     });
   },
 
-  loadLocallySavedRecords(){
-    const request = window.indexedDB.open("cached-transactions", 1);
-
-    // Create schema
-    request.onupgradeneeded = (event) => {
-      const db = event.target.result;
-
-      // Creates an object store with a listID keypath that can be used to query on.
-      const cachedTransactionsStore = db.createObjectStore(
-        "cachedTransactions",
-        { keyPath: "listID" }
-      );
-      // Creates a statusIndex that we can query on.
-      cachedTransactionsStore.createIndex("dateIndex", "date");
-      cachedTransactionsStore.createIndex("nameIndex", "name");
-      cachedTransactionsStore.createIndex("valueIndex", "value");
-    };
-  },
+  
 
   saveRecord(record) {
     const request = window.indexedDB.open("cached-transactions", 1);

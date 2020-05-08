@@ -2,11 +2,48 @@ const API = require(`./API`);
 import moment from "moment";
 
 let transactions = [];
-let myChart;
+let localRecords = [];
+var myChart;
 
 // ().then(data => {
 //   console.log(data)
 // })
+
+let loadPromise = function () {
+  return new Promise((resolve, reject) => {
+    loadLocallySavedRecords((result) => {
+      // if (err) reject(err)
+      resolve(result);
+    });
+  })
+}
+
+
+function loadLocallySavedRecords(cb) {
+  const request = window.indexedDB.open("cached-transactions", 1);
+  // Opens a transaction, accesses the toDoList objectStore and statusIndex.
+  request.onsuccess = () => {
+    const db = request.result;
+    const transaction = db.transaction(["cachedTransactions"], "readwrite");
+    const store = transaction.objectStore("cachedTransactions");
+    // const statusIndex = store.index("statusIndex");
+
+    // Return an item by keyPath
+    const getRequest = store.getAll();
+    getRequest.onsuccess = () => {
+      localRecords = getRequest.result
+      return cb(getRequest.result)
+    };
+
+    // Return an item by index
+    // const getRequestIdx = statusIndex.getAll("complete");
+    // getRequestIdx.onsuccess = () => {
+    //   console.log(getRequestIdx.result);
+    // };
+  };
+
+}
+
 
 fetch("/api/transaction")
   .then((response) => {
@@ -16,9 +53,15 @@ fetch("/api/transaction")
     // save db data on global variable
     transactions = data;
 
-    populateTotal();
-    populateTable();
-    populateChart();
+    loadPromise().then(result => {
+      if (result) {
+        transactions.unshift(result[0])
+      }
+      populateTotal();
+      populateTable();
+      populateChart();
+    })
+
   });
 function populateTotal() {
   // populateDelta()
@@ -38,11 +81,11 @@ function populateTotal() {
   if (transactions[0].value < 0) {
     totalDelta.innerHTML = `<i class="fa fa-arrow-down" aria-hidden="true"></i> $${
       transactions[0].value * -1
-    } (${delta.toFixed(2)}%)`;
+      } (${delta.toFixed(2)}%)`;
   } else {
     totalDelta.innerHTML = `<i class="fa fa-arrow-up" aria-hidden="true"></i> $${
       transactions[0].value
-    } (+${delta.toFixed(2)}%)`;
+      } (+${delta.toFixed(2)}%)`;
   }
 
   if (total < 0) {
@@ -83,13 +126,13 @@ function populateTable() {
     tr.innerHTML = `<td>${element.name.toUpperCase()}</td>
       <td class="t-amount">${element.value}</td>
       <td>${moment(element.date).format(
-        `MM/DD h:mm a`
-      )} <span class="expand-icon"></span></td>
+      `MM/DD h:mm a`
+    )} <span class="expand-icon"></span></td>
     `;
     trContent.innerHTML = `<td colspan="9" class="table-expand-row-nested">
       <span><i class="strong">Date:</i> ${moment(element.date).format(
-        `llll`
-      )}, <i class="strong">Category:</i> ${element.category}
+      `llll`
+    )}, <i class="strong">Category:</i> ${element.category}
     </span>
       </td>
     `;
