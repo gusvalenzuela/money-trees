@@ -3,15 +3,14 @@ const WebpackPwaManifest = require("webpack-pwa-manifest");
 
 const config = {
   mode: "development",
-  entry: [
-    __dirname + "/src/_js/index.js",
-    __dirname + "/src/_js/jquery-3.5.1.min.js",
-    // user: "./public/user.js",
-  ],
+  entry: {
+    app: "./src/_js/index.js",
+    // style: "./src/_css/index.css",
+    // other: "./src/js/other.js",
+  },
   output: {
     path: __dirname + "/public/dist",
-    publicPath: "/",
-    filename: "bundle.js",
+    filename: "[name].bundle.js",
   },
   plugins: [
     new WebpackPwaManifest({
