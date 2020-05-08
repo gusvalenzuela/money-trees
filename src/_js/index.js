@@ -9,38 +9,34 @@ var myChart;
 //   console.log(data)
 // })
 
-let loadPromise = function () {
+API.openDB()
+
+function loadLocallySavedRecords() {
   return new Promise((resolve, reject) => {
-    loadLocallySavedRecords((result) => {
-      // if (err) reject(err)
-      resolve(result);
-    });
-  })
-}
+    const request = window.indexedDB.open("cached-transactions", 7);
+    // Opens a transaction, accesses the toDoList objectStore and statusIndex.
+    request.onsuccess = () => {
+      const db = request.result;
+      const transaction = db.transaction(["cachedTransactions"], "readwrite");
+      const store = transaction.objectStore("cachedTransactions");
+      // const statusIndex = store.index("statusIndex");
 
+      // Return an item by keyPath
+      const getRequest = store.getAll();
+      getRequest.onsuccess = () => {
+        localRecords = getRequest.result
+        resolve(getRequest.result)
+      };
 
-function loadLocallySavedRecords(cb) {
-  const request = window.indexedDB.open("cached-transactions", 1);
-  // Opens a transaction, accesses the toDoList objectStore and statusIndex.
-  request.onsuccess = () => {
-    const db = request.result;
-    const transaction = db.transaction(["cachedTransactions"], "readwrite");
-    const store = transaction.objectStore("cachedTransactions");
-    // const statusIndex = store.index("statusIndex");
-
-    // Return an item by keyPath
-    const getRequest = store.getAll();
-    getRequest.onsuccess = () => {
-      localRecords = getRequest.result
-      return cb(getRequest.result)
+      // Return an item by index
+      // const getRequestIdx = statusIndex.getAll("complete");
+      // getRequestIdx.onsuccess = () => {
+      //   console.log(getRequestIdx.result);
+      // };
     };
+  })
 
-    // Return an item by index
-    // const getRequestIdx = statusIndex.getAll("complete");
-    // getRequestIdx.onsuccess = () => {
-    //   console.log(getRequestIdx.result);
-    // };
-  };
+
 
 }
 
@@ -53,14 +49,33 @@ fetch("/api/transaction")
     // save db data on global variable
     transactions = data;
 
-    loadPromise().then(result => {
+    loadLocallySavedRecords().then(result => {
       if (result) {
         transactions.unshift(result[0])
+        // also send to server
+        fetch("/api/transaction/", {
+          method: "POST",
+          body: JSON.stringify(result[0]),
+          headers: {
+            Accept: "application/json, text/plain, */*",
+            "Content-Type": "application/json",
+          },
+        })
+          .then((response) => {
+            // clear form
+            API.deleteAllLocalRecords()
+
+            response.json();
+          })
       }
-      populateTotal();
-      populateTable();
-      populateChart();
+
+      return
+
     })
+
+    populateTotal();
+    populateTable();
+    populateChart();
 
   });
 function populateTotal() {
