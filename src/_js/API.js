@@ -35,19 +35,13 @@ module.exports = {
       const cachedTransactionsStore = transaction.objectStore(
         "cachedTransactions"
       );
-      // const nameIndex = cachedTransactionsStore.index("nameIndex");
-      // const dateIndex = cachedTransactionsStore.index("dateIndex");
-      // const valueIndex = cachedTransactionsStore.index("valueIndex");
-
-      // for record
 
       // Adds data to our objectStore
-      cachedTransactionsStore.add({
-        listID: "1",
-        name: record.name,
-        // date: record.date,
-        value: record.value,
-      });
+      console.log(Date.now())
+
+      record.listID = Number(Date.now())
+      console.log(record)
+      cachedTransactionsStore.add(record);
     };
   },
 };
