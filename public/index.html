@@ -88,7 +88,9 @@
         </div>
       </div>
       <div class="row" style="margin-top: 2rem;">
-        <p style="text-align: center;">Latest Transactions (showing up to 10)</p>
+        <p style="text-align: center;">
+          Latest Transactions (showing up to 10)
+        </p>
       </div>
 
       <div class="transactions">
@@ -112,6 +114,18 @@
     ></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
     <script src="dist/bundle.js"></script>
-
+    <script>
+      if (navigator.serviceWorker.controller) {
+      } else {
+        navigator.serviceWorker.oncontrollerchange = function () {
+          this.controller.onstatechange = function () {
+            if (this.state === "activated") {
+              console.log(`activated`);
+            }
+          };
+        };
+        navigator.serviceWorker.register("service-worker.js");
+      }
+    </script>
   </body>
 </html>

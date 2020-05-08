@@ -4,17 +4,6 @@ import moment from "moment";
 let transactions = [];
 let myChart;
 
-if (navigator.serviceWorker.controller) {
-} else {
-  navigator.serviceWorker.oncontrollerchange = function () {
-    this.controller.onstatechange = function () {
-      if (this.state === "activated") {
-        console.log(`activated`);
-      }
-    };
-  };
-  navigator.serviceWorker.register("service-worker.js");
-}
 
 // ().then(data => {
 //   console.log(data)
