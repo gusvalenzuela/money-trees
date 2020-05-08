@@ -1,0 +1,10 @@
+{
+  "name": "Money Trees Budget App",
+  "short_name": "Money Trees",
+  "orientation": "portrait",
+  "display": "standalone",
+  "start_url": "/",
+  "description": "An application giving users a fast and easy way to track their money.",
+  "background_color": "#f14209",
+  "theme_color": "#ffffff"
+}

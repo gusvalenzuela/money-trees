@@ -1,47 +1,122 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <meta name="theme-color" content="#317EFB">
-  <link rel="shortcut icon" href="icons/icon-192x192.png" type="image/x-icon">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <meta name="theme-color" content="#317EFB" />
+    <link rel="icon" href="favicon.icoheok" type="image/x-icon" />
+    <link rel="manifest" href="dist/manifest.webmanifest" />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="assets/css/foundation.min.css"
+    />
+    <link rel="stylesheet" href="./assets/css/index.css" />
+    <!-- <link rel="stylesheet" href="dist/style.css" /> -->
 
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-  <link rel="stylesheet" href="styles.css">
+    <title>Money Trees - Budget Tracker</title>
+  </head>
+  <body>
+    <div class="wrapper">
+      <div class="dashboard row positive">
+        <!-- top total dashbard  -->
+        <div class="dashboard-number-card positive">
+          <h5 class="dashboard-number-value">
+            Your Total: <br />$<span id="total">0</span>
+          </h5>
+          <div>
+            <p class="dashboard-number-area">Last transaction:</p>
+            <p class="dashboard-number-delta">
+              <i class="fa fa-arrow-up" aria-hidden="true"></i>
+              <i class="fa fa-arrow-down" aria-hidden="true"></i>
+            </p>
+          </div>
+        </div>
+      </div>
 
-  <title>Budget Tracker</title>
-</head>
-<body>
-  <div class="wrapper">
-    <div class="total">
-      <div class="total">Your total is: $<span id="total">0</span></div>
+      <!-- input form  -->
+
+      <div class="hero-background">
+        <div class="row">
+          <div class="columns small-12 medium-4">
+            <div class="translucent-form-overlay form">
+              <h3>NEW TRANSACTION</h3>
+              <br />
+              <div class="row columns">
+                <label style="margin-bottom: 0.5rem;" for="#t-name"
+                  >Name:</label
+                >
+                <input type="text" id="t-name" name="name" placeholder="Any" />
+              </div>
+              <div class="row columns">
+                <label style="margin-bottom: 0.5rem;" for="#t-amount"
+                  >Amount:</label
+                >
+                <input
+                  type="number"
+                  min="0"
+                  name="amount"
+                  id="t-amount"
+                  placeholder="$$$"
+                />
+              </div>
+              <div class="row">
+                <button
+                  type="button"
+                  class="deposit button columns"
+                  id="add-btn"
+                >
+                  <i class="fa fa-plus"></i> DEPOSIT
+                </button>
+                <button
+                  type="button"
+                  class="withdraw button columns"
+                  id="sub-btn"
+                >
+                  <i class="fa fa-minus"></i> WITHDRAW
+                </button>
+              </div>
+
+              <p class="error"></p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row" style="margin-top: 2rem;">
+        <p style="text-align: center;">
+          Latest Transactions (showing up to 10)
+        </p>
+      </div>
+
+      <div class="transactions">
+        <table class="table-expand">
+          <tbody id="tbody"></tbody>
+        </table>
+      </div>
+
+      <canvas id="myChart"></canvas>
     </div>
 
-    <div class="form">
-      <input type="text" id="t-name" placeholder="Name of transaction" />
-      <input type="number" min="0" id="t-amount" placeholder="Transaction amount" />
-      <button id="add-btn"><i class="fa fa-plus buttons"></i> Add Funds</button>
-      <button id="sub-btn"><i class="fa fa-minus"></i> Subtract Funds</button>
-      <p class="error"></p>
-    </div>
-
-    <div class="transactions">
-      <table>
-        <thead>
-          <th>Transaction</th>
-          <th>Amount</th>
-        </thead>
-        <tbody id="tbody">
-          
-        </tbody>
-      </table>
-    </div>
-    
-    <canvas id="myChart"></canvas>
-  </div>
-
-  <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
-  <script src="index.js"></script>
-</body>
+    <script src="assets/js/jquery-3.5.1.min.js"></script>
+    <script src="assets/js/foundation.min.js"></script>
+    <script src="assets/js/chart.js"></script>
+    <script src="dist/app.bundle.js"></script>
+    <script>
+      if (navigator.serviceWorker.controller) {
+      } else {
+        navigator.serviceWorker.oncontrollerchange = function () {
+          this.controller.onstatechange = function () {
+            if (this.state === "activated") {
+              console.log(`activated`);
+            }
+          };
+        };
+        navigator.serviceWorker.register("service-worker.js");
+      }
+    </script>
+  </body>
 </html>

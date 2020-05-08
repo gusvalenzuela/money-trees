@@ -1,0 +1,63 @@
+body {
+  font-size: 120%;
+  font-family: Arial;
+  background: #fafdff;
+}
+
+button,
+input {
+  font-size: 100%;
+  font-family: Arial;
+}
+
+table {
+  width: 100%;
+  border: solid 1px #125988;
+}
+
+td,
+th {
+  /* border: 1px solid transparent; */
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+canvas{
+  padding: 1.5rem;
+}
+.strong {
+  font-weight: bolder !important;
+}
+.withdraw {
+  background: #125988;
+}
+
+.error {
+  color: red;
+}
+
+.wrapper {
+  margin: 0 auto;
+  max-width: 825px;
+  text-align: center;
+}
+
+.form {
+  margin-top: 25px;
+  width: 100%;
+}
+
+.transactions {
+  text-align: left;
+  max-height: 200px;
+  overflow: auto;
+  width: 90%;
+  margin: 0.5rem auto 2rem;
+  /* margin-bottom: 3rem; */
+}
+.open-details td {
+  font-size: medium;
+}

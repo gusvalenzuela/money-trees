@@ -1,0 +1,260 @@
+:root {
+  --color-positive: #2ba156;
+  --color-negative: #cc4b37;
+}
+.hero-background {
+  height: fit-content;
+  background-image: url(../images/vacation-beach-anders-wideskott-unsplash-t.jpg);
+  background-size: cover;
+  color: #fefefe;
+  padding: 40px 0;
+}
+.positive {
+  background: var(--color-positive);
+}
+.negative {
+  background: var(--color-negative);
+}
+
+.dashboard-number-card {
+  background: #fff;
+  margin: auto;
+  position: relative;
+  max-width: 350px;
+}
+
+.dashboard-number-card .dashboard-number-delta {
+  -webkit-align-items: baseline;
+  -ms-flex-align: baseline;
+  align-items: baseline;
+  bottom: 6px;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  font-size: 12px;
+  font-weight: 500;
+  margin-bottom: 0;
+  opacity: 0.7;
+  position: absolute;
+  right: 6px;
+  color: #1779ba;
+}
+
+.dashboard-number-card .dashboard-number-delta i {
+  margin-right: 5px;
+  width: 0.6rem;
+}
+
+.dashboard-number-card.positive .dashboard-number-delta,
+.dashboard-number-card.negative .dashboard-number-delta {
+  color: #fefefe;
+}
+
+.dashboard-number-card.positive .dashboard-number-value,
+.dashboard-number-card.positive .dashboard-number-area,
+.dashboard-number-card.negative .dashboard-number-value,
+.dashboard-number-card.negative .dashboard-number-area {
+  color: white;
+}
+
+.dashboard-number-card.positive .dashboard-number-area,
+.dashboard-number-card.negative .dashboard-number-area {
+  opacity: 0.6;
+}
+
+.dashboard-number-card.positive {
+  background: var(--color-positive);
+}
+
+.dashboard-number-card.negative {
+  background: var(--color-negative);
+}
+
+.dashboard-number-value {
+  color: #1779ba;
+  font-size: 22px;
+  font-weight: 800;
+  padding: 1rem 2rem 2rem;
+  text-align: center;
+}
+
+.dashboard-number-area {
+  bottom: 6px;
+  color: #1779ba;
+  font-size: 12px;
+  left: 6px;
+  margin-bottom: 0;
+  position: absolute;
+}
+
+.translucent-form-overlay {
+  margin: auto;
+  max-width: 325px;
+  background-color: #363636b7;
+  padding: 20px;
+  color: #fefefe;
+  margin-right: 1rem;
+}
+
+@media screen and (max-width: 400px) {
+  .translucent-form-overlay {
+    max-width: 90%;
+  }
+}
+
+.translucent-form-overlay .columns.row {
+  display: block;
+}
+
+.translucent-form-overlay label {
+  font-size: 14px;
+  text-align: left;
+}
+
+.translucent-form-overlay h3,
+.translucent-form-overlay label {
+  color: #fefefe;
+}
+
+.translucent-form-overlay input,
+.translucent-form-overlay select {
+  color: #8a8a8a;
+  text-align: left;
+}
+
+.translucent-form-overlay input::-webkit-input-placeholder {
+  color: #8a8a8a;
+}
+
+.translucent-form-overlay input:-ms-input-placeholder {
+  color: #8a8a8a;
+}
+
+.translucent-form-overlay input::placeholder {
+  color: #8a8a8a;
+}
+
+.table-expand {
+  margin-top: 0.5rem;
+}
+
+.table-expand td {
+  color: #8a8a8a;
+}
+
+.table-expand tr {
+  border: 1px solid #e6e6e6;
+}
+
+.table-expand .text-right {
+  padding-right: 3rem;
+}
+
+.table-expand-row.is-active .expand-icon::after {
+  content: "-";
+}
+
+.table-expand-row .expand-icon::after {
+  content: "+";
+  float: right;
+}
+
+.table-expand-row-content {
+  display: none;
+}
+
+.table-expand-row-content.is-active {
+  display: contents;
+  -webkit-animation: fadeIn ease-in 1;
+  animation: fadeIn ease-in 1;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+  -webkit-animation-duration: 0.5s;
+  animation-duration: 0.5s;
+
+  font-size: 16px;
+}
+
+.table-expand-row-nested {
+  background-color: #e6e6e6;
+  border: 1px solid transparent;
+}
+
+@-webkit-keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.mobile-ios-modal {
+  width: 226px;
+  min-height: 160px;
+  height: auto;
+  margin: 0;
+  padding: 0;
+  border-radius: 0.75rem;
+  position: absolute;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+  -ms-transform: translateX(-50%);
+  transform: translateX(-50%);
+}
+
+.mobile-ios-modal-inner {
+  padding: 0.5rem 0.5rem 1.5rem;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+  text-align: center;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+}
+
+.mobile-ios-modal-options {
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.mobile-ios-modal-options .button {
+  -webkit-flex: 1 0 0;
+  -ms-flex: 1 0 0px;
+  flex: 1 0 0;
+  margin-bottom: 0;
+  color: #1779ba;
+  background: transparent;
+  border-color: #e6e6e6;
+  border-bottom: 0;
+}
+
+.mobile-ios-modal-options-stacked .button {
+  display: block;
+  width: 100%;
+  -webkit-flex: 1 0 0;
+  -ms-flex: 1 0 0px;
+  flex: 1 0 0;
+  margin-bottom: 0;
+  color: #1779ba;
+  background: transparent;
+  border-color: #e6e6e6;
+  border-bottom: 0;
+}
