@@ -12,8 +12,8 @@ const FILES_TO_CACHE = [
   "/assets/images/vacation-beach-anders-wideskott-unsplash-t.jpg",
 ];
 
-const STATIC_CACHE = "mt-static-cache-v1";
-const RUNTIME_CACHE = "mt-runtime-cache";
+const STATIC_CACHE = "mt-static-cache-v3";
+const RUNTIME_CACHE = "mt-runtime-cache-v2";
 
 self.addEventListener("install", (event) => {
   event.waitUntil(
