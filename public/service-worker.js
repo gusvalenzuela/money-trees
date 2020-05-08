@@ -1,4 +1,5 @@
 const FILES_TO_CACHE = [
+  "/",
   "/index.html",
   "/favicon.ico",
   "/css/global/reset.css",
@@ -56,19 +57,27 @@ self.addEventListener("fetch", (event) => {
     return;
   }
 
+  console.log(event.request.url);
   // handle runtime GET requests for data from /api routes
   if (event.request.url.includes("/api/transaction")) {
     // make network request and fallback to cache if network request fails (offline)
     event.respondWith(
-      caches.open(RUNTIME_CACHE).then((cache) => {
-        return fetch(event.request)
-          .then((response) => {
-            cache.put(event.request, response.clone());
-            return response;
-          })
-          .catch(() => caches.match(event.request));
-      })
+      caches.open(RUNTIME_CACHE).then(async cache => {
+        try {
+          const response = await fetch(event.request);
+          // If the response was good, clone it and store it in the cache.
+          if (response.status === 200) {
+            cache.put(event.request.url, response.clone());
+          }
+          return response;
+        }
+        catch (err) {
+          // Network request failed, try to get it from the cache.
+          return cache.match(event.request);
+        }
+      }).catch(err => console.log(err))
     );
+
     return;
   }
 

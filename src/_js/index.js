@@ -4,6 +4,18 @@ import moment from "moment";
 let transactions = [];
 let myChart;
 
+if (navigator.serviceWorker.controller) {
+} else {
+  navigator.serviceWorker.oncontrollerchange = function () {
+    this.controller.onstatechange = function () {
+      if (this.state === "activated") {
+        console.log(`activated`);
+      }
+    };
+  };
+  navigator.serviceWorker.register("service-worker.js");
+}
+
 // ().then(data => {
 //   console.log(data)
 // })
@@ -87,9 +99,9 @@ function populateTable() {
       )} <span class="expand-icon"></span></td>
     `;
     trContent.innerHTML = `<td colspan="9" class="table-expand-row-nested">
-      <span><i class="strong">Date:</i> ${moment(element.date).format(`llll`)}, <i class="strong">Category:</i> ${
-      element.category
-    }
+      <span><i class="strong">Date:</i> ${moment(element.date).format(
+        `llll`
+      )}, <i class="strong">Category:</i> ${element.category}
     </span>
       </td>
     `;
@@ -196,6 +208,9 @@ function sendTransaction(isAdding) {
     },
   })
     .then((response) => {
+      // clear form
+      nameEl.value = "";
+      amountEl.value = "";
       return response.json();
     })
     .then((data) => {
