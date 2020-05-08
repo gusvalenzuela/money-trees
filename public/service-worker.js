@@ -2,14 +2,13 @@ const FILES_TO_CACHE = [
   "/",
   "/index.html",
   "/favicon.ico",
-  // "/assets/js/jquery-3.5.1.min.js",
+  "/assets/js/jquery-3.5.1.min.js",
   "/assets/css/global/reset.css",
   "/assets/css/index.css",
   "/assets/css/app-foundation.css",
   "/assets/css/styles.css",
   "/dist/manifest.webmanifest",
   "/dist/app.bundle.js",
-  "/dist/jquery.bundle.js",
   "/assets/images/vacation-beach-anders-wideskott-unsplash-t.jpg",
 ];
 
