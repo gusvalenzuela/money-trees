@@ -38,10 +38,10 @@ self.addEventListener("activate", (event) => {
       .then((cacheNames) => {
         // return array of cache names that are old to delete
         return cacheNames.filter(
-          (cacheName) => !currentCaches.includes(cacheName)
-        );
-      })
-      .then((cachesToDelete) => {
+          (i) => currentCaches.includes(i)
+          );
+        })
+        .then((cachesToDelete) => {
         return Promise.all(
           cachesToDelete.map((cacheToDelete) => {
             return caches.delete(cacheToDelete);
