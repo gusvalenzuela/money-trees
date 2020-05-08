@@ -4,7 +4,6 @@ import moment from "moment";
 let transactions = [];
 let myChart;
 
-
 // ().then(data => {
 //   console.log(data)
 // })
@@ -176,7 +175,17 @@ function sendTransaction(isAdding) {
 
   // if subtracting funds, convert amount to negative number
   if (!isAdding) {
-    transaction.value *= -1;
+    const con = confirm(`Are you sure you want to SUBTRACT these funds?`);
+    if (con) {
+      transaction.value *= -1;
+    } else {
+      return;
+    }
+  } else {
+    const con = confirm(`Are you sure you want to ADD these funds?`);
+    if (!con) {
+      return;
+    }
   }
 
   // add to beginning of current array of data
@@ -188,7 +197,7 @@ function sendTransaction(isAdding) {
   populateTotal();
 
   // also send to server
-  fetch("/api/transaction/", {
+  fetch("/api/transactions/", {
     method: "POST",
     body: JSON.stringify(transaction),
     headers: {

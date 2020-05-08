@@ -1,6 +1,6 @@
-:root{
-	--color-positive: #2ba156;
-	--color-negative: #cc4b37;
+:root {
+  --color-positive: #2ba156;
+  --color-negative: #cc4b37;
 }
 .hero-background {
   height: fit-content;
@@ -9,11 +9,11 @@
   color: #fefefe;
   padding: 40px 0;
 }
-.positive{
-    background: var(--color-positive) ;
+.positive {
+  background: var(--color-positive);
 }
-.negative{
-    background: var(--color-negative) ;
+.negative {
+  background: var(--color-negative);
 }
 
 .dashboard-number-card {
@@ -67,7 +67,7 @@
 }
 
 .dashboard-number-card.negative {
-  background: var(--color-negative) ;
+  background: var(--color-negative);
 }
 
 .dashboard-number-value {
@@ -96,10 +96,10 @@
   margin-right: 1rem;
 }
 
-@media screen and (max-width: 400px){
-    .translucent-form-overlay{
-        max-width: 90%;
-    }
+@media screen and (max-width: 400px) {
+  .translucent-form-overlay {
+    max-width: 90%;
+  }
 }
 
 .translucent-form-overlay .columns.row {
@@ -135,7 +135,7 @@
 }
 
 .table-expand {
-  margin-top: .5rem;
+  margin-top: 0.5rem;
 }
 
 .table-expand td {
@@ -196,4 +196,65 @@
   to {
     opacity: 1;
   }
+}
+
+.mobile-ios-modal {
+  width: 226px;
+  min-height: 160px;
+  height: auto;
+  margin: 0;
+  padding: 0;
+  border-radius: 0.75rem;
+  position: absolute;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+  -ms-transform: translateX(-50%);
+  transform: translateX(-50%);
+}
+
+.mobile-ios-modal-inner {
+  padding: 0.5rem 0.5rem 1.5rem;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+  text-align: center;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+}
+
+.mobile-ios-modal-options {
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.mobile-ios-modal-options .button {
+  -webkit-flex: 1 0 0;
+  -ms-flex: 1 0 0px;
+  flex: 1 0 0;
+  margin-bottom: 0;
+  color: #1779ba;
+  background: transparent;
+  border-color: #e6e6e6;
+  border-bottom: 0;
+}
+
+.mobile-ios-modal-options-stacked .button {
+  display: block;
+  width: 100%;
+  -webkit-flex: 1 0 0;
+  -ms-flex: 1 0 0px;
+  flex: 1 0 0;
+  margin-bottom: 0;
+  color: #1779ba;
+  background: transparent;
+  border-color: #e6e6e6;
+  border-bottom: 0;
 }

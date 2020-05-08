@@ -2,13 +2,14 @@ const FILES_TO_CACHE = [
   "/",
   "/index.html",
   "/favicon.ico",
-  "/css/global/reset.css",
-  "/css/index.css",
-  "/css/app-foundation.css",
-  "/css/styles.css",
+  "/assets/js/jquery-3.5.1.min.js",
+  "/assets/css/global/reset.css",
+  "/assets/css/index.css",
+  "/assets/css/app-foundation.css",
+  "/assets/css/styles.css",
   "/dist/manifest.webmanifest",
   "/dist/bundle.js",
-  "/images/vacation-beach-anders-wideskott-unsplash-t.jpg",
+  "/assets/images/vacation-beach-anders-wideskott-unsplash-t.jpg",
 ];
 
 const STATIC_CACHE = "mt-static-cache-v1";
@@ -49,6 +50,7 @@ self.addEventListener("activate", (event) => {
 
 self.addEventListener("fetch", (event) => {
   // non GET requests are not cached and requests to other origins are not cached
+  //
   if (
     event.request.method !== "GET" ||
     !event.request.url.startsWith(self.location.origin)
@@ -57,25 +59,28 @@ self.addEventListener("fetch", (event) => {
     return;
   }
 
-  console.log(event.request.url);
+  // console.log(event.request.url);
+
   // handle runtime GET requests for data from /api routes
   if (event.request.url.includes("/api/transaction")) {
     // make network request and fallback to cache if network request fails (offline)
     event.respondWith(
-      caches.open(RUNTIME_CACHE).then(async cache => {
-        try {
-          const response = await fetch(event.request);
-          // If the response was good, clone it and store it in the cache.
-          if (response.status === 200) {
-            cache.put(event.request.url, response.clone());
+      caches
+        .open(RUNTIME_CACHE)
+        .then(async (cache) => {
+          try {
+            const response = await fetch(event.request);
+            // If the response was good, clone it and store it in the cache.
+            if (response.status === 200) {
+              cache.put(event.request.url, response.clone());
+            }
+            return response;
+          } catch (err) {
+            // Network request failed, try to get it from the cache.
+            return cache.match(event.request);
           }
-          return response;
-        }
-        catch (err) {
-          // Network request failed, try to get it from the cache.
-          return cache.match(event.request);
-        }
-      }).catch(err => console.log(err))
+        })
+        .catch((err) => console.log(err))
     );
 
     return;
