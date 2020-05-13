@@ -11,6 +11,7 @@ var myChart;
 
 API.openDB()
 
+
 function loadLocallySavedRecords() {
   return new Promise((resolve, reject) => {
     const request = window.indexedDB.open("cached-transactions", 7);
